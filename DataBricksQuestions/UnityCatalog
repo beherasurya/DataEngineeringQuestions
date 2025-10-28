@@ -6,12 +6,12 @@ It is mainly used for Data Governance purpose.
 It helps us managing a large amount of data while maintaining Data Integrity,reliability and
 accuracy.
 
-It helps us in keeping track of multiple workspace and multiple teams data inside a single
-place.
+It helps us in keeping track of multiple workspace and multiple teams data under a single
+catalogue.
 
 It provide security features such as permission where we can grant permission to specific
 users for specific access such as read ,write or update.
 
-Inside DataBricks we have one option called Unity Catalogue we have to click on it
-then we have a option called + symboal then we have to click on create a Catalogue.
+Inside DataBricks we have one option called   Catalogue we have to click on it
+then we have a option called + symbol then we have to click on create a Catalogue.
 

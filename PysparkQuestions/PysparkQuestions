@@ -1,0 +1,68 @@
+1.What is a Catalyst Optimizer in Spark?
+2.Tell me a Query Optimization technique in Spark?
+Ans:-
+Catalyst optimizer is a query optimzation technique in the Spark which helps to
+optimize spark queries to run in an optimized manner.
+ It helps to run our query faster.
+ It uses multiple techniques internally like Logical Optimization, Physical Optimization,
+ Constant Folding,Predicate Pushdown and many more techniques to ensure that
+ whatever queries we run that should be executed in most optimized manner.
+
+ 3. What is Broadcast join in Spark?
+
+ A broadcast join is a type of join where  the smaller DataFrame will be sent to each
+  nodes in the cluster to ensure that each worker node has a complete copy
+ of the smaller dataframe in memory.
+ This allows the join operation to be conducted locally on each worker node,
+without the need of shuffling.
+Shuffling is a costly operation in Spark
+
+ Exa: from pyspark.sql.functions import broadcast
+
+# Assume 'transactions' is a large DataFrame and 'users' is a smaller DataFrame
+joined_df = transactions_df.join(broadcast(users_df), transactions_df.user_id == users_df.id)
+
+4. What is Data Skewness in Spark?
+When our DataSets are not evenly distributed across partitions that is known as Data
+ skewness in Spark.
+
+ 5. How to Handle Data Skewness?
+ Salting:
+Concept: Add a random "salt" (e.g., a random number) to the skewed key in the larger dataset.
+Process:
+Create a new composite key by concatenating the original skewed key with a random number.
+If joining with a smaller table, duplicate its rows by adding all possible salt values to its join key.
+Perform the join using the new salted keys.
+
+Remove the salt after the operation if needed.
+Benefit: Distributes the skewed key's records across multiple partitions, preventing a single task from being overloaded.
+Adaptive Query Execution (AQE):
+
+Concept: A Spark SQL optimization that makes runtime adjustments to query execution plans based on statistics.
+Skew Join Optimization: AQE can detect skewed joins and dynamically split the skewed partitions into smaller sub-partitions, distributing the work more evenly.
+Usage: Enabled by default in Spark 3.2 and later. Ensure spark.sql.adaptive.enabled and spark.sql.adaptive.skewedJoin.enabled are set to true.
+
+Broadcast Joins:
+Concept: If one of the tables in a join is significantly smaller than the other (typically fits in memory on all executors), broadcast it.
+Benefit: Eliminates shuffling for the smaller table, significantly improving join performance and mitigating skew related to that table.
+
+Repartitioning:
+Concept: Redistribute data across partitions to achieve a more even distribution.
+Methods:
+repartition(): Reshuffles data across a specified number of partitions.
+repartitionByRange(): Partitions data based on a range of values in a column, which can be useful for ordered data.
+Caution: Repartitioning involves a shuffle, so use it judiciously.
+
+Bucketing:
+Concept: Group data into fixed-size "buckets" based on a specific column's values, creating a pre-partitioned and sorted dataset.
+Benefit: Can improve join performance by avoiding shuffles if both tables are bucketed on the join key.
+Custom Partitioning:
+Concept: Implement custom partitioning logic based on domain knowledge to ensure even distribution for specific use cases.
+
+Isolate and Process Skewed Data Separately:
+Concept: Identify the highly skewed keys, extract the corresponding data, process it separately (potentially using a different strategy), and then merge the results back.
+
+
+
+
+

@@ -1,4 +1,9 @@
-Unity Catalog is an open source storage layer which is used to classify and manage data
+Unity Catalog is an open source storage layer which is used to classify and manage data.
+
+It is mainly used for Data Governance purpose.
+
+It helps us managing a large amount of data while maintaining Data Integrity,reliability and
+accuracy.
 
 It helps us in keeping track of multiple workspace and multiple teams data inside a single
 place.

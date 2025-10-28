@@ -1,0 +1,11 @@
+Unity Catalog is an open source storage layer which is used to classify and manage data
+
+It helps us in keeping track of multiple workspace and multiple teams data inside a single
+place.
+
+It provide security features such as permission where we can grant permission to specific
+users for specific access such as read ,write or update.
+
+Inside DataBricks we have one option called Unity Catalogue we have to click on it
+then we have a option called add Data then we have to click on create a Catalogue.
+

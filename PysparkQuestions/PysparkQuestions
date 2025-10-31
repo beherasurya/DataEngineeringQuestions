@@ -62,7 +62,16 @@ Concept: Implement custom partitioning logic based on domain knowledge to ensure
 Isolate and Process Skewed Data Separately:
 Concept: Identify the highly skewed keys, extract the corresponding data, process it separately (potentially using a different strategy), and then merge the results back.
 
+Q.Cache vs Persist in Spark?
+Both of them are used to hold intermediary data. 
+Persist provides multiple options to store intermediary data like
 
+MEMORY_ONLY: Stores the RDD/DataFrame in memory as deserialized Java objects.
+MEMORY_AND_DISK: Stores in memory, spills to disk if memory is full. 
+DISK_ONLY: Stores only on disk.
+MEMORY_ONLY_SER: Stores in memory as serialized objects (saves space, increases CPU overhead).
+MEMORY_AND_DISK_SER
+but cache provides only one option that is MEMORY_ONLY.
 
 
 
